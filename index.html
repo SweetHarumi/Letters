@@ -8,46 +8,81 @@
 body {
     margin: 0;
     font-family: Arial;
-    background: url('https://images.unsplash.com/photo-1520975916090-3105956dac38') center/cover;
+    background: black;
     color: white;
-    text-align: center;
+    overflow: hidden;
 }
 
+/* fundo preto + leve brilho */
 .container {
-    background: rgba(0,0,0,0.7);
     min-height: 100vh;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+/* botões */
 .tabs {
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 button {
     margin: 5px;
-    padding: 10px 20px;
-    border: none;
+    padding: 10px 18px;
+    border: 1px solid white;
     cursor: pointer;
-    background: #222;
+    background: transparent;
     color: white;
-    border-radius: 10px;
+    border-radius: 8px;
     transition: 0.3s;
 }
 
 button:hover {
-    background: #555;
+    background: white;
+    color: black;
 }
 
-.card {
-    margin-top: 30px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
+/* caixa principal */
+.card-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 700px;
+    padding: 25px;
+    border: 1px solid white;
     border-radius: 15px;
-    backdrop-filter: blur(5px);
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(6px);
+
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* animação fade */
+.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+/* imagem pequena */
+.photo {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid white;
+}
+
+/* texto */
+.text {
     white-space: pre-line;
+    flex: 1;
+}
+
+/* título */
+h1 {
+    margin-bottom: 20px;
 }
 </style>
 </head>
@@ -65,59 +100,84 @@ button:hover {
     <button onclick="show('kita')">Kita</button>
 </div>
 
-<div class="card" id="card">
-Clique em um nome acima para ver a carta 💖
+<div class="card-box" id="cardBox">
+
+    <img id="photo" class="photo" src="https://images.unsplash.com/photo-1520975916090-3105956dac38">
+
+    <div class="text" id="text">
+Clique em um nome acima 💖
+    </div>
+
 </div>
 
 </div>
 
 <script>
 
-const cartas = {
-suna: `SUNA RINTARŌ
+const data = {
+suna: {
+img: "https://images.unsplash.com/photo-1520975916090-3105956dac38",
+text: `SUNA RINTARŌ
 
-Você é silêncio, mas não vazio.
-Você é proteção disfarçada de indiferença.
+Você é silêncio, mas nunca vazio.
+Você observa tudo, mesmo quando ninguém percebe.
 
-Mesmo quando parece distante, eu sei que você está observando tudo.
-Cuidando de tudo.
+Existe algo em você que protege sem esforço.
+E eu vejo isso.
 
-Obrigada por ficar.
-Obrigada por existir assim.`,
+Obrigada por ficar.`
+},
 
-atsumu: `MIYA ATSUMU
+atsumu: {
+img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+text: `MIYA ATSUMU
 
-Você é caos, luz e risada ao mesmo tempo.
+Você é luz desorganizada.
+Um caos bonito que transforma tudo ao redor.
 
-Você transforma qualquer dia simples em algo vivo.
-Você me faz rir até esquecer o mundo.
+Você faz o mundo parecer mais leve só por existir.
 
-Obrigada por ser leve.
-Obrigada por ser você.`,
+Obrigada por me fazer sorrir.`
+},
 
-ushijima: `USHIJIMA WAKATOSHI
+ushijima: {
+img: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+text: `USHIJIMA WAKATOSHI
 
-Você fala pouco, mas sua presença fala muito.
+Você é silêncio firme.
+Presença constante.
 
-Existe força no seu silêncio.
-Existe paz no seu jeito de estar aqui.
+Você não precisa falar muito para ser sentido.
 
-Obrigada por permanecer.
-Mesmo sem palavras.`,
+Obrigada por permanecer.`
+},
 
-kita: `KITA SHINSUKE
+kita: {
+img: "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d",
+text: `KITA SHINSUKE
 
-Você cuida de tudo sem pedir nada em troca.
+Você cuida de tudo.
+Mesmo quando ninguém vê.
 
-Você segura o mundo nas costas e ainda sorri.
-
-Mas você também merece descanso.
+Você segura o mundo com calma.
 
 Obrigada por ser casa.`
+}
 };
 
-function show(name){
-    document.getElementById("card").innerText = cartas[name];
+function show(name) {
+    const box = document.getElementById("cardBox");
+
+    // animação de saída
+    box.classList.add("fade-out");
+
+    setTimeout(() => {
+        document.getElementById("photo").src = data[name].img;
+        document.getElementById("text").innerText = data[name].text;
+
+        // animação de entrada
+        box.classList.remove("fade-out");
+    }, 300);
 }
 
 </script>
