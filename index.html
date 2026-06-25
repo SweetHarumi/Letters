@@ -2,39 +2,48 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<title>Cartas</title>
+<title>5 anos</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial;
     background: black;
     color: white;
-    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
-/* fundo preto + leve brilho */
-.container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* topo */
+.header {
+    text-align: center;
+    padding: 25px 10px;
 }
 
-/* botões */
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header p {
+    opacity: 0.6;
+    margin-top: 5px;
+}
+
+/* abas */
 .tabs {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
 }
 
 button {
-    margin: 5px;
-    padding: 10px 18px;
-    border: 1px solid white;
-    cursor: pointer;
-    background: transparent;
+    background: black;
     color: white;
-    border-radius: 8px;
+    border: 1px solid white;
+    padding: 8px 14px;
+    cursor: pointer;
+    border-radius: 6px;
     transition: 0.3s;
 }
 
@@ -43,141 +52,177 @@ button:hover {
     color: black;
 }
 
-/* caixa principal */
-.card-box {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 700px;
-    padding: 25px;
-    border: 1px solid white;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(6px);
-
-    opacity: 1;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+/* área principal */
+.container {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
 }
 
-/* animação fade */
-.fade-out {
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-/* imagem pequena */
+/* imagem */
 .photo {
-    width: 140px;
-    height: 140px;
+    width: 260px;
+    height: 260px;
     object-fit: cover;
-    border-radius: 12px;
     border: 1px solid white;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 /* texto */
 .text {
     white-space: pre-line;
-    flex: 1;
+    text-align: left;
+    line-height: 1.7;
+    opacity: 1;
+    transition: opacity 0.4s ease;
 }
 
-/* título */
-h1 {
-    margin-bottom: 20px;
+/* fade */
+.fade {
+    opacity: 0;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<h1>💌 5 anos com vocês</h1>
+<div class="header">
+    <h1>💌 5 anos</h1>
+    <p>para os meus Momos</p>
+</div>
 
 <div class="tabs">
     <button onclick="show('suna')">Suna</button>
     <button onclick="show('atsumu')">Atsumu</button>
     <button onclick="show('ushijima')">Ushijima</button>
     <button onclick="show('kita')">Kita</button>
+    <button onclick="show('kuroo')">Kuroo</button>
+    <button onclick="show('all')">Todos</button>
 </div>
 
-<div class="card-box" id="cardBox">
+<div class="container">
 
-    <img id="photo" class="photo" src="https://images.unsplash.com/photo-1520975916090-3105956dac38">
+    <img id="photo" class="photo" src="imagens/capa.jpg">
 
-    <div class="text" id="text">
-Clique em um nome acima 💖
+    <div id="text" class="text">
+Clique em uma aba para começar.
     </div>
-
-</div>
 
 </div>
 
 <script>
 
 const data = {
+
 suna: {
-img: "https://images.unsplash.com/photo-1520975916090-3105956dac38",
-text: `SUNA RINTARŌ
+img: "imagens/suna.jpg",
+text: `Suna
 
-Você é silêncio, mas nunca vazio.
-Você observa tudo, mesmo quando ninguém percebe.
-
-Existe algo em você que protege sem esforço.
-E eu vejo isso.
-
-Obrigada por ficar.`
+(carta aqui — a versão que já escrevemos)`
 },
 
 atsumu: {
-img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-text: `MIYA ATSUMU
+img: "imagens/atsumu.jpg",
+text: `Atsumu
 
-Você é luz desorganizada.
-Um caos bonito que transforma tudo ao redor.
-
-Você faz o mundo parecer mais leve só por existir.
-
-Obrigada por me fazer sorrir.`
+(carta aqui — a versão que já escrevemos)`
 },
 
 ushijima: {
-img: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-text: `USHIJIMA WAKATOSHI
+img: "imagens/ushijima.jpg",
+text: `Ushijima
 
-Você é silêncio firme.
-Presença constante.
-
-Você não precisa falar muito para ser sentido.
-
-Obrigada por permanecer.`
+(carta aqui — a versão que já escrevemos)`
 },
 
 kita: {
-img: "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d",
-text: `KITA SHINSUKE
+img: "imagens/kita.jpg",
+text: `Kita
 
-Você cuida de tudo.
-Mesmo quando ninguém vê.
+(carta aqui — a versão que já escrevemos)`
+},
 
-Você segura o mundo com calma.
+kuroo: {
+img: "imagens/kuroo.jpg",
+text: `Kuroo
 
-Obrigada por ser casa.`
+(carta aqui — a versão que já escrevemos)`
+},
+
+all: {
+img: "imagens/grupo.jpg",
+text: `Todos vocês
+
+Cinco anos.
+
+Eu olho para tudo o que vivemos e percebo que não é só tempo.
+
+É história.
+
+É mudança.
+
+É crescimento.
+
+É amor.
+
+Nos conhecemos por acaso, em um grupo, jogando, rindo, vivendo coisas simples que aos poucos se tornaram tudo.
+
+Houve erros.
+
+Houve brigas.
+
+Houve distância.
+
+Mas também houve escolha.
+
+Escolha de ficar.
+
+Escolha de continuar.
+
+Escolha de reconstruir.
+
+E isso mudou minha vida inteira.
+
+Hoje vocês não são apenas pessoas importantes.
+
+Vocês são parte de mim.
+
+Parte da minha memória.
+
+Parte da minha força.
+
+Parte da minha vontade de continuar.
+
+Museu.
+
+Casa.
+
+Japão.
+
+Futuro.
+
+Tudo isso ainda existe porque vocês existem comigo.
+
+Obrigada por cinco anos.
+
+E obrigada por permanecerem.`
 }
+
 };
 
 function show(name) {
-    const box = document.getElementById("cardBox");
+    const photo = document.getElementById("photo");
+    const text = document.getElementById("text");
 
-    // animação de saída
-    box.classList.add("fade-out");
+    text.classList.add("fade");
 
     setTimeout(() => {
-        document.getElementById("photo").src = data[name].img;
-        document.getElementById("text").innerText = data[name].text;
-
-        // animação de entrada
-        box.classList.remove("fade-out");
-    }, 300);
+        photo.src = data[name].img;
+        text.innerText = data[name].text;
+        text.classList.remove("fade");
+    }, 200);
 }
 
 </script>
