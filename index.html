@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Cartas</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: url('https://images.unsplash.com/photo-1520975916090-3105956dac38') center/cover;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    background: rgba(0,0,0,0.7);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.tabs {
+    margin-top: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #555;
+}
+
+.card {
+    margin-top: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    white-space: pre-line;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💌 5 anos com vocês</h1>
+
+<div class="tabs">
+    <button onclick="show('suna')">Suna</button>
+    <button onclick="show('atsumu')">Atsumu</button>
+    <button onclick="show('ushijima')">Ushijima</button>
+    <button onclick="show('kita')">Kita</button>
+</div>
+
+<div class="card" id="card">
+Clique em um nome acima para ver a carta 💖
+</div>
+
+</div>
+
+<script>
+
+const cartas = {
+suna: `SUNA RINTARŌ
+
+Você é silêncio, mas não vazio.
+Você é proteção disfarçada de indiferença.
+
+Mesmo quando parece distante, eu sei que você está observando tudo.
+Cuidando de tudo.
+
+Obrigada por ficar.
+Obrigada por existir assim.`,
+
+atsumu: `MIYA ATSUMU
+
+Você é caos, luz e risada ao mesmo tempo.
+
+Você transforma qualquer dia simples em algo vivo.
+Você me faz rir até esquecer o mundo.
+
+Obrigada por ser leve.
+Obrigada por ser você.`,
+
+ushijima: `USHIJIMA WAKATOSHI
+
+Você fala pouco, mas sua presença fala muito.
+
+Existe força no seu silêncio.
+Existe paz no seu jeito de estar aqui.
+
+Obrigada por permanecer.
+Mesmo sem palavras.`,
+
+kita: `KITA SHINSUKE
+
+Você cuida de tudo sem pedir nada em troca.
+
+Você segura o mundo nas costas e ainda sorri.
+
+Mas você também merece descanso.
+
+Obrigada por ser casa.`
+};
+
+function show(name){
+    document.getElementById("card").innerText = cartas[name];
+}
+
+</script>
+
+</body>
+</html>
